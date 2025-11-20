@@ -4,19 +4,24 @@ import 'package:sample_app/widget/message_bubble.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key, required this.userName});
+
   final String userName;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(
-          'Hi $userName',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),
+        title: Text(
+          "Hi $userName",
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
         ),
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/');
               print("Logout clicked");
             },
             icon: const Icon(Icons.logout, color: Colors.red),

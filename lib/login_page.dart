@@ -1,6 +1,5 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:sample_app/chat_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,10 +13,15 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  void login(context) {
+  void login(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       print("Welcome ${userNameController.text}, Login Successful!");
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(userName: userNameController.text)));
+
+      Navigator.pushNamed(
+        context,
+        '/chat',
+        arguments: userNameController.text,
+      );
     } else {
       print("Login Failed");
     }
@@ -46,7 +50,9 @@ class _LoginPageState extends State<LoginPage> {
                 height: 200,
                 fit: BoxFit.contain,
               ),
+
               const SizedBox(height: 40),
+
               const Text(
                 "Let's Sign You In",
                 textAlign: TextAlign.center,
@@ -56,7 +62,9 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+
               const SizedBox(height: 8),
+
               const Text(
                 "Welcome back bro!",
                 style: TextStyle(
@@ -65,9 +73,9 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
+
               const SizedBox(height: 40),
 
-              // Email Field
               TextFormField(
                 controller: userNameController,
                 decoration: InputDecoration(
@@ -87,7 +95,6 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 16),
 
-              // Password Field
               TextFormField(
                 controller: passwordController,
                 obscureText: true,
@@ -108,7 +115,6 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 30),
 
-              // Login Button
               SizedBox(
                 width: double.infinity,
                 height: 50,
